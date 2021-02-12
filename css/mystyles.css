@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*!
+* Start Bootstrap - Resume v6.0.2 (https://startbootstrap.com/theme/resume)
+* Copyright 2013-2020 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+#mylist-a {
+    list-style: decimal !important;
+}
+
+#mylist-a li {
+    margin: 5px 0 !important;
+}
+
+#mylist-b {
+    list-style: decimal !important;
+}
+
+#mylist-b li {
+    margin: 7px 0 !important;
+}
+
+.underprep {
+    color: brown;
+}
+
+.undersub {
+    color: darkgreen;
+}
+
+.accepted {
+    color: #226ead;
+}
+
+.core {
+    color:forestgreen;
+}
+
+.mytitle-a {
+    color: darkslategray;
+}
