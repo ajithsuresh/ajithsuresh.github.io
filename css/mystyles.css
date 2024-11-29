@@ -27,6 +27,10 @@
     margin: 7px 0 !important;
 }
 
+#align-par {
+    text-align: justify;
+}
+
 .underprep {
     color: brown;
 }
