@@ -1,0 +1,77 @@
+name: Update citation count
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install scholarly
+        run: pip install scholarly
+
+      - name: Fetch citation count from Google Scholar and patch portfolio.html
+        run: |
+          python3 << 'PYEOF'
+          import re, datetime, sys
+
+          try:
+              from scholarly import scholarly
+
+              # Fetch by Google Scholar author ID (from profile URL)
+              author = scholarly.search_author_id('uXP9hiMAAAAJ')
+              count = author.get('citedby', None)
+              if count is None:
+                  print('citedby field missing — skipping update')
+                  sys.exit(0)
+
+          except Exception as e:
+              print(f'scholarly fetch failed: {e} — skipping update')
+              sys.exit(0)
+
+          month_year = datetime.datetime.utcnow().strftime('%b %Y')
+          print(f'Google Scholar citations: {count:,}  ({month_year})')
+
+          with open('portfolio.html', 'r', encoding='utf-8') as f:
+              html = f.read()
+
+          # Replace the number inside the Scholar anchor block
+          html = re.sub(
+              r'(href="https://scholar\.google\.com[^"]*"[^>]*>[\s\S]*?'
+              r'<span class="pf-stat-num">)[\d,]+(</span>)',
+              rf'\g<1>{count:,}\2',
+              html,
+              flags=re.DOTALL
+          )
+
+          # Replace the date stamp "(Scholar, Mon YYYY)"
+          html = re.sub(
+              r'(Scholar, )[A-Za-z]+ \d{4}',
+              rf'\g<1>{month_year}',
+              html
+          )
+
+          with open('portfolio.html', 'w', encoding='utf-8') as f:
+              f.write(html)
+
+          print('portfolio.html patched')
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet portfolio.html; then
+            echo "Citation count unchanged — nothing to commit"
+          else
+            git add portfolio.html
+            git commit -m "Update citation count [skip ci]"
+            git push
+          fi
