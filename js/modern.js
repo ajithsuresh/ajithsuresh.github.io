@@ -10,11 +10,7 @@
     if (!section) return;
     var pane = document.querySelector('.container-fluid');
     if (!pane) return;
-    // scroll-snap pane: each section is min-height 100vh, so index × pane height
-    var sections = Array.from(document.querySelectorAll('section.resume-section'));
-    var idx = sections.indexOf(section);
-    if (idx === -1) return;
-    pane.scrollTo({ top: idx * pane.clientHeight, behavior: 'smooth' });
+    pane.scrollTo({ top: section.offsetTop, behavior: 'smooth' });
   }
 
   function applyDesktopBehaviour() {
