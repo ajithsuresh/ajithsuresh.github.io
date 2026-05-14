@@ -63,8 +63,8 @@
     </div>
     <div class="pf-stat">
       <a href="https://scholar.google.com/citations?user=uXP9hiMAAAAJ&hl=en" target="_blank" style="text-decoration:none;display:contents">
-        <span class="pf-stat-num" id="scholar-citations">—</span>
-        <span class="pf-stat-label">Citations <span style="font-size:0.65rem;color:#94a3b8">(Scholar)</span></span>
+        <span class="pf-stat-num">2,130</span>
+        <span class="pf-stat-label">Citations <span style="font-size:0.65rem;color:#94a3b8">(Scholar, May 2026)</span></span>
       </a>
     </div>
     <div class="pf-stat">
@@ -383,34 +383,5 @@
     <a href="index.html">Academic CV</a>
   </footer>
 
-<script>
-// Fetch citation count from Semantic Scholar (open API, CORS-friendly)
-// Finds Ajith Suresh via a known paper, then pulls total citations
-(async function () {
-  try {
-    var paperRes = await fetch(
-      'https://api.semanticscholar.org/graph/v1/paper/search' +
-      '?query=ABY2.0+Improved+Mixed-Protocol+Secure+Two-Party+Computation' +
-      '&fields=authors&limit=1'
-    );
-    var paperData = await paperRes.json();
-    var authors = (paperData.data && paperData.data[0] && paperData.data[0].authors) || [];
-    var ajith = authors.find(function (a) {
-      return a.name && a.name.toLowerCase().indexOf('ajith') !== -1;
-    });
-    if (!ajith) return;
-
-    var authRes = await fetch(
-      'https://api.semanticscholar.org/graph/v1/author/' +
-      ajith.authorId + '?fields=citationCount'
-    );
-    var authData = await authRes.json();
-    if (!authData.citationCount) return;
-
-    var el = document.getElementById('scholar-citations');
-    if (el) el.textContent = authData.citationCount.toLocaleString();
-  } catch (e) { /* keep — placeholder */ }
-})();
-</script>
 </body>
 </html>
