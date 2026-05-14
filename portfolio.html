@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajith Suresh — Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/ajith.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="css/portfolio.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Top nav ───────────────────────────────────────────── -->
+  <nav class="pf-nav">
+    <span class="pf-nav-brand">Ajith <span>Suresh</span></span>
+    <ul class="pf-nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="index.html" class="btn-switch">← Academic CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <header class="pf-hero">
+    <div class="pf-hero-inner">
+      <img class="pf-avatar" src="assets/img/profile_tii.png" alt="Ajith Suresh" />
+      <h1>Ajith <span>Suresh</span></h1>
+      <p class="pf-hero-tagline">
+        Making computation private by design — cryptography researcher
+        at the intersection of <strong style="color:#c7d2fe">MPC</strong>,
+        <strong style="color:#c7d2fe">privacy-preserving ML</strong>,
+        and <strong style="color:#c7d2fe">federated learning</strong>.
+      </p>
+      <div class="pf-hero-badges">
+        <span class="pf-badge">🏛 Lead MPC Researcher · TII Abu Dhabi</span>
+<span class="pf-badge">📍 Abu Dhabi, UAE</span>
+        <span class="pf-badge">🎓 Google PhD Fellow 2019</span>
+      </div>
+      <div class="pf-hero-cta">
+        <a href="files/cv.pdf" class="btn-primary-pf" target="_blank">
+          <i class="fas fa-file-alt"></i> Download CV
+        </a>
+        <a href="#papers" class="btn-outline-pf">
+          <i class="fas fa-book-open"></i> View Research
+        </a>
+        <a href="mailto:ajith.suresh@tii.ae" class="btn-outline-pf">
+          <i class="fas fa-envelope"></i> Get in Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Stats bar ─────────────────────────────────────────── -->
+  <div class="pf-stats">
+    <div class="pf-stat">
+      <span class="pf-stat-num">20+</span>
+      <span class="pf-stat-label">Publications</span>
+    </div>
+    <div class="pf-stat">
+      <a href="https://scholar.google.com/citations?user=uXP9hiMAAAAJ&hl=en" target="_blank" style="text-decoration:none;display:contents">
+        <span class="pf-stat-num">2,130</span>
+        <span class="pf-stat-label">Citations <span style="font-size:0.65rem;color:#94a3b8">(Scholar, May 2026)</span></span>
+      </a>
+    </div>
+    <div class="pf-stat">
+      <span class="pf-stat-num">10+</span>
+      <span class="pf-stat-label">Years in Crypto Research</span>
+    </div>
+    <div class="pf-stat">
+      <span class="pf-stat-num">3</span>
+      <span class="pf-stat-label">Countries Worked In</span>
+    </div>
+  </div>
+
+  <!-- ── Research Areas ─────────────────────────────────────── -->
+  <div id="research">
+    <div class="pf-section">
+      <h2 class="pf-section-title">Research Focus</h2>
+      <p class="pf-section-sub">Three interconnected pillars that drive my work in applied cryptography</p>
+      <div class="pf-pillars">
+
+        <div class="pf-pillar">
+          <div class="pf-pillar-icon">🔐</div>
+          <h3>Secure Multi-Party Computation</h3>
+          <p>Designing efficient MPC protocols that allow multiple parties to jointly compute on private inputs — without any party revealing their data. Focus on practical, high-throughput constructions for real-world deployment.</p>
+          <div class="pf-pillar-tags">
+            <span class="pf-tag">Secret Sharing</span>
+            <span class="pf-tag">Garbled Circuits</span>
+            <span class="pf-tag">OT Extension</span>
+            <span class="pf-tag">3PC / 4PC</span>
+          </div>
+        </div>
+
+        <div class="pf-pillar">
+          <div class="pf-pillar-icon">🧠</div>
+          <h3>Privacy-Preserving Machine Learning</h3>
+          <p>Building MPC-based frameworks for private inference and training of neural networks. Enabling ML models to be evaluated on sensitive data without exposing the model or the data to any party.</p>
+          <div class="pf-pillar-tags">
+            <span class="pf-tag violet">PPML</span>
+            <span class="pf-tag violet">Neural Networks</span>
+            <span class="pf-tag violet">Fixed-Point Arith.</span>
+            <span class="pf-tag violet">Lookup Tables</span>
+          </div>
+        </div>
+
+        <div class="pf-pillar">
+          <div class="pf-pillar-icon">🌐</div>
+          <h3>Secure Federated Learning</h3>
+          <p>Combining MPC with federated learning to achieve both privacy and robustness — defending against poisoning attacks and aggregation leakage in large-scale distributed ML systems.</p>
+          <div class="pf-pillar-tags">
+            <span class="pf-tag cyan">Federated Learning</span>
+            <span class="pf-tag cyan">Secure Aggregation</span>
+            <span class="pf-tag cyan">Byzantine Robustness</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Selected Publications ──────────────────────────────── -->
+  <div class="pf-section-alt" id="papers">
+    <div class="pf-section">
+      <h2 class="pf-section-title">Selected Publications</h2>
+      <p class="pf-section-sub">Key contributions across MPC, PPML, and federated learning — <a href="files/cv_publications.pdf" target="_blank">full list with links</a></p>
+
+      <ul class="pf-publist">
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-usenix">USENIX Sec'21</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/1225" target="_blank">ABY2.0: Improved Mixed-Protocol Secure Two-Party Computation</a>
+            <p class="pf-pub-authors">Arpita Patra, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/1225" target="_blank" class="pf-pub-link">PDF</a>
+            <a href="https://github.com/encryptogroup/ABY2.0" target="_blank" class="pf-pub-link">Code</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-usenix">USENIX Sec'21</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/592" target="_blank">SWIFT: Super-fast and Robust Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Nishat Koti, Mahak Pancholi, Arpita Patra, <strong>Ajith Suresh</strong></p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/592" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ndss">NDSS'20</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/042" target="_blank">BLAZE: Blazing Fast Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Arpita Patra, <strong>Ajith Suresh</strong></p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/042" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-sp">IEEE S&amp;P'24</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/1744" target="_blank">Don't Eject the Impostor: Fast Three-Party Computation With a Known Cheater</a>
+            <p class="pf-pub-authors">Andreas Brüggemann, Oliver Schick, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/1744" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-sp">IEEE S&amp;P'23</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/499" target="_blank">FLUTE: Fast and Secure Lookup Table Evaluations</a>
+            <p class="pf-pub-authors">Andreas Brüggemann, Robin Hundt, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/499" target="_blank" class="pf-pub-link">PDF</a>
+            <a href="https://github.com/encryptogroup/FLUTE" target="_blank" class="pf-pub-link">Code</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ndss">NDSS'22</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2021/755" target="_blank">Tetrad: Fair and Robust 4PC Framework for Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Nishat Koti, Arpita Patra, Rahul Rachuri, <strong>Ajith Suresh</strong></p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2021/755" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-other">IEEE SaTML'24</span>
+            <span class="pf-pub-award">🏆 Runner-Up</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/545" target="_blank">ScionFL: Efficient and Robust Secure Quantized Aggregation</a>
+            <p class="pf-pub-authors">Yaniv Ben-Itzhak, Helen Möllering, Benny Pinkas, Thomas Schneider, <strong>Ajith Suresh</strong>, et al.</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/545" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-journal">J. Cryptology'23</span>
+            <span class="pf-pub-rank">CORE A*</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2022/475" target="_blank">MPClan: Protocol Suite for Privacy-Conscious Computations</a>
+            <p class="pf-pub-authors">Nishat Koti, Shravani Patil, Arpita Patra, <strong>Ajith Suresh</strong></p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2022/475" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ches">CHES'26</span>
+            <span class="pf-pub-rank">CORE A</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2022/1611" target="_blank">WW-FL: Secure and Private Large-Scale Federated Learning</a>
+            <p class="pf-pub-authors">Felix Marx, Thomas Schneider, <strong>Ajith Suresh</strong>, Tobias Wehrle, Christian Weinert, Hossein Yalame</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2022/1611" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── Skills & Tools ──────────────────────────────────────── -->
+  <div id="skills">
+    <div class="pf-section">
+      <h2 class="pf-section-title">Skills &amp; Expertise</h2>
+      <p class="pf-section-sub">Tools, techniques, and concepts from a decade of cryptography research</p>
+      <div class="pf-skills">
+
+        <div class="pf-skill-group">
+          <h4>Cryptographic Primitives</h4>
+          <ul>
+            <li>Secret Sharing (Shamir, Additive)</li>
+            <li>Garbled Circuits</li>
+            <li>Oblivious Transfer</li>
+            <li>Homomorphic Encryption</li>
+            <li>Zero-Knowledge Proofs</li>
+          </ul>
+        </div>
+
+        <div class="pf-skill-group">
+          <h4>ML &amp; Systems</h4>
+          <ul>
+            <li>Neural Network Inference</li>
+            <li>Federated Learning Protocols</li>
+            <li>Fixed-Point Arithmetic</li>
+            <li>Quantised Aggregation</li>
+            <li>Byzantine-Robust Aggregation</li>
+          </ul>
+        </div>
+
+        <div class="pf-skill-group">
+          <h4>Languages &amp; Tools</h4>
+          <ul>
+            <li>C++ (primary research language)</li>
+            <li>Python</li>
+            <li>LaTeX</li>
+            <li>Linux / HPC Clusters</li>
+            <li>Git / GitHub</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Career Timeline ──────────────────────────────────────── -->
+  <div class="pf-section-alt" id="career">
+    <div class="pf-section">
+      <h2 class="pf-section-title">Career Path</h2>
+      <p class="pf-section-sub">From Kerala to Bangalore to Darmstadt to Abu Dhabi</p>
+      <div class="pf-timeline">
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">April 2025 – Present</div>
+          <h4>Lead MPC Researcher — Technology Innovation Institute, Abu Dhabi</h4>
+          <p>Leading MPC research at the Cryptography Research Center (CRC), driving protocol design and applied cryptography initiatives.</p>
+        </div>
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">May 2023 – March 2025</div>
+          <h4>Senior MPC Researcher — Technology Innovation Institute, Abu Dhabi</h4>
+          <p>Research on privacy-preserving ML for IoT, large-scale federated learning, and circuit synthesis for secure computation.</p>
+        </div>
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">October 2021 – March 2023</div>
+          <h4>Post-doctoral Researcher — TU Darmstadt, Germany (ENCRYPTO Group)</h4>
+          <p>Post-doc under Prof. Thomas Schneider. Produced FLUTE, Don't Eject the Impostor, WW-FL, SafeFL, and PrivMail.</p>
+        </div>
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">September 2017 – July 2021</div>
+          <h4>Ph.D in Computer Science — IISc Bangalore, India</h4>
+          <p>Thesis on MPC for small populations with applications to PPML, under Prof. Arpita Patra. Google PhD Fellow 2019. Outstanding thesis commendation.</p>
+        </div>
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">August 2014 – June 2017</div>
+          <h4>M.Tech (Research) — IISc Bangalore, India</h4>
+          <p>Research master's in Secure Multi-Party Computation, laying the groundwork for ASTRA and early PPML protocols.</p>
+        </div>
+
+        <div class="pf-tl-item">
+          <div class="pf-tl-date">June 2010 – April 2014</div>
+          <h4>B.Tech in CSE — College of Engineering (CET), Trivandrum, India</h4>
+          <p>Best Outgoing Student in CSE (P Rathnaswamy Memorial Endowment). AIR 807 in GATE 2014.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Contact ────────────────────────────────────────────── -->
+  <div class="pf-contact">
+    <h2>Let's Collaborate</h2>
+    <p>Open to invited talks, collaboration opportunities, in-depth technical discussions, and exploring joint research. Drop an email or connect on social media.</p>
+    <div class="pf-contact-links">
+      <a href="mailto:ajith.suresh@tii.ae" class="pf-social-btn">
+        <i class="fas fa-envelope"></i> ajith.suresh@tii.ae
+      </a>
+      <a href="https://www.linkedin.com/in/ajithsuresh/" target="_blank" class="pf-social-btn">
+        <i class="fab fa-linkedin-in"></i> LinkedIn
+      </a>
+      <a href="https://github.com/ajithsuresh" target="_blank" class="pf-social-btn">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://twitter.com/Ajith_Suresh92" target="_blank" class="pf-social-btn">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a href="https://www.tii.ae/team/dr-ajith-suresh" target="_blank" class="pf-social-btn">
+        <i class="fas fa-building"></i> TII Profile
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="pf-footer">
+    Ajith Suresh · Lead MPC Researcher · TII Abu Dhabi &nbsp;·&nbsp;
+    <a href="index.html">Academic CV</a>
+  </footer>
+
+</body>
+</html>
