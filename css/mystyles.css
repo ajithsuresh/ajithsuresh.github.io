@@ -368,8 +368,6 @@ a:hover { color: var(--primary-dark); }
     height: 100vh;
     overflow: hidden;
     padding: 0 !important;
-    max-width: 1600px;
-    margin: 0 auto;
   }
 
   #sideNav {
@@ -393,11 +391,21 @@ a:hover { color: var(--primary-dark); }
 
   section.resume-section {
     display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
     min-height: 100vh !important;
+    width: 100% !important;
+    max-width: none !important;
     scroll-snap-align: start;
-    padding: 3rem 3.5rem !important;
+    padding: 3rem 0 !important;
     opacity: 0;
     animation: sectionFadeIn 0.35s ease forwards;
+  }
+
+  section.resume-section > .resume-section-content {
+    width: 100%;
+    max-width: 900px;
+    padding: 3rem 3.5rem 0;
   }
 
   /* Tighten timeline spacing so content fits in one viewport */
