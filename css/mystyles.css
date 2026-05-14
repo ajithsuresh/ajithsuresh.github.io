@@ -359,3 +359,62 @@ h3.mb-0 a:hover { color: var(--primary) !important; }
 a { color: var(--primary); }
 a:hover { color: var(--primary-dark); }
 .text-primary { color: var(--primary) !important; }
+
+/* ── Grid layout (desktop) ───────────────────────────────── */
+@media (min-width: 992px) {
+  body {
+    display: grid !important;
+    grid-template-columns: 17rem 1fr;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+
+  #sideNav {
+    position: relative !important;
+    width: 17rem !important;
+    min-height: 100vh !important;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  #sideNav::-webkit-scrollbar { display: none; }
+
+  /* Scroll-snap pane — each section fills the viewport, snaps into place */
+  .container-fluid {
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 0 !important;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  section.resume-section {
+    display: flex !important;
+    min-height: 100vh !important;
+    scroll-snap-align: start;
+    padding: 3rem 3.5rem !important;
+    opacity: 0;
+    animation: sectionFadeIn 0.35s ease forwards;
+  }
+
+  /* Tighten timeline spacing so content fits in one viewport */
+  #experience .mb-5,
+  #education .mb-5 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  #mylist-a li,
+  #mylist-b li {
+    padding: 0.45rem 0;
+  }
+
+  #awards .fa-ul li {
+    padding: 0.35rem 0;
+  }
+}
+
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
