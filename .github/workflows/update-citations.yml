@@ -1,0 +1,86 @@
+name: Update citation count
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch citation count and patch portfolio.html
+        run: |
+          python3 << 'PYEOF'
+          import urllib.request, json, re, datetime, sys
+
+          # ── Step 1: find Ajith Suresh's Semantic Scholar author ID ──
+          url = (
+              'https://api.semanticscholar.org/graph/v1/paper/search'
+              '?query=ABY2.0+Improved+Mixed-Protocol+Secure+Two-Party+Computation'
+              '&fields=authors&limit=1'
+          )
+          with urllib.request.urlopen(url) as r:
+              data = json.loads(r.read())
+
+          authors = data.get('data', [{}])[0].get('authors', [])
+          ajith = next((a for a in authors if 'ajith' in a['name'].lower()), None)
+          if not ajith:
+              print('Author not found — skipping update')
+              sys.exit(0)
+
+          # ── Step 2: fetch total citation count ───────────────────────
+          url2 = (
+              f"https://api.semanticscholar.org/graph/v1/author/"
+              f"{ajith['authorId']}?fields=citationCount"
+          )
+          with urllib.request.urlopen(url2) as r:
+              author = json.loads(r.read())
+
+          count      = author.get('citationCount', 0)
+          month_year = datetime.datetime.utcnow().strftime('%b %Y')
+
+          print(f'Citation count: {count:,}  ({month_year})')
+
+          # ── Step 3: patch portfolio.html ─────────────────────────────
+          with open('portfolio.html', 'r', encoding='utf-8') as f:
+              html = f.read()
+
+          # Replace the number inside the Scholar anchor block
+          html = re.sub(
+              r'(href="https://scholar\.google\.com[^"]*"[^>]*>[\s\S]*?'
+              r'<span class="pf-stat-num">)[\d,]+(</span>)',
+              rf'\g<1>{count:,}\2',
+              html,
+              flags=re.DOTALL
+          )
+
+          # Replace the date stamp "(Scholar, Mon YYYY)"
+          html = re.sub(
+              r'(Scholar, )[A-Za-z]+ \d{4}',
+              rf'\g<1>{month_year}',
+              html
+          )
+
+          with open('portfolio.html', 'w', encoding='utf-8') as f:
+              f.write(html)
+
+          print('portfolio.html patched')
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet portfolio.html; then
+            echo "Citation count unchanged — nothing to commit"
+          else
+            git add portfolio.html
+            git commit -m "Update citation count [skip ci]"
+            git push
+          fi
