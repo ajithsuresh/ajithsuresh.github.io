@@ -38,8 +38,7 @@
       </p>
       <div class="pf-hero-badges">
         <span class="pf-badge">🏛 Lead MPC Researcher · TII Abu Dhabi</span>
-        <span class="pf-badge">🎓 Google PhD Fellow 2019</span>
-        <span class="pf-badge">📍 Abu Dhabi, UAE</span>
+<span class="pf-badge">📍 Abu Dhabi, UAE</span>
         <span class="pf-badge">🔬 20+ Publications</span>
       </div>
       <div class="pf-hero-cta">
@@ -63,8 +62,10 @@
       <span class="pf-stat-label">Publications</span>
     </div>
     <div class="pf-stat">
-      <span class="pf-stat-num">8</span>
-      <span class="pf-stat-label">CORE A* Venues</span>
+      <a href="https://scholar.google.com/citations?user=uXP9hiMAAAAJ&hl=en" target="_blank" style="text-decoration:none;display:contents">
+        <span class="pf-stat-num" id="scholar-citations">—</span>
+        <span class="pf-stat-label">Citations <span style="font-size:0.65rem;color:#94a3b8">(Scholar)</span></span>
+      </a>
     </div>
     <div class="pf-stat">
       <span class="pf-stat-num">10+</span>
@@ -73,10 +74,6 @@
     <div class="pf-stat">
       <span class="pf-stat-num">3</span>
       <span class="pf-stat-label">Countries Worked In</span>
-    </div>
-    <div class="pf-stat">
-      <span class="pf-stat-num">1</span>
-      <span class="pf-stat-label">Google PhD Fellowship</span>
     </div>
   </div>
 
@@ -126,139 +123,143 @@
     </div>
   </div>
 
-  <!-- ── Featured Papers ────────────────────────────────────── -->
+  <!-- ── Selected Publications ──────────────────────────────── -->
   <div class="pf-section-alt" id="papers">
     <div class="pf-section">
-      <h2 class="pf-section-title">Signature Works</h2>
-      <p class="pf-section-sub">Selected publications representing key contributions across MPC, PPML, and federated learning</p>
-      <div class="pf-papers">
+      <h2 class="pf-section-title">Selected Publications</h2>
+      <p class="pf-section-sub">Key contributions across MPC, PPML, and federated learning — <a href="files/cv_publications.pdf" target="_blank">full list with links</a></p>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-usenix">USENIX Sec'21</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
-          </div>
-          <h4>ABY2.0: Improved Mixed-Protocol Secure Two-Party Computation</h4>
-          <p class="pf-paper-authors">Arpita Patra, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">Highly efficient 2PC framework mixing arithmetic, boolean, and Yao shares. Achieves order-of-magnitude improvements over ABY in online complexity.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2020/1225" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
-            <a href="https://github.com/encryptogroup/ABY2.0" target="_blank" class="pf-paper-link"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
+      <ul class="pf-publist">
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-usenix">USENIX Sec'21</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-usenix">USENIX Sec'21</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>SWIFT: Super-fast and Robust Privacy-Preserving Machine Learning</h4>
-          <p class="pf-paper-authors">Nishat Koti, Mahak Pancholi, Arpita Patra, <strong>Ajith Suresh</strong></p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">First 3PC PPML framework achieving fairness and guaranteed output delivery — even against a malicious adversary — at practical performance.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2020/592" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/1225" target="_blank">ABY2.0: Improved Mixed-Protocol Secure Two-Party Computation</a>
+            <p class="pf-pub-authors">Arpita Patra, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/1225" target="_blank" class="pf-pub-link">PDF</a>
+            <a href="https://github.com/encryptogroup/ABY2.0" target="_blank" class="pf-pub-link">Code</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-ndss">NDSS'20</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-usenix">USENIX Sec'21</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>BLAZE: Blazing Fast Privacy-Preserving Machine Learning</h4>
-          <p class="pf-paper-authors">Arpita Patra, <strong>Ajith Suresh</strong></p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">3PC PPML framework with record-setting online communication. Pioneered the use of function-independent preprocessing to achieve blazing fast online phase.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2020/042" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/592" target="_blank">SWIFT: Super-fast and Robust Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Nishat Koti, Mahak Pancholi, Arpita Patra, <strong>Ajith Suresh</strong></p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/592" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-sp">IEEE S&amp;P'23</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ndss">NDSS'20</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>FLUTE: Fast and Secure Lookup Table Evaluations</h4>
-          <p class="pf-paper-authors">Andreas Brüggemann, Robin Hundt, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">New primitive for private evaluation of lookup tables, enabling efficient non-linear activation functions in PPML with minimal communication overhead.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2023/499" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
-            <a href="https://github.com/encryptogroup/FLUTE" target="_blank" class="pf-paper-link"><i class="fab fa-github"></i> Code</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2020/042" target="_blank">BLAZE: Blazing Fast Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Arpita Patra, <strong>Ajith Suresh</strong></p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2020/042" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-ndss">NDSS'22</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-sp">IEEE S&amp;P'24</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>Tetrad: Fair and Robust 4PC Framework for Privacy-Preserving Machine Learning</h4>
-          <p class="pf-paper-authors">Nishat Koti, Arpita Patra, Rahul Rachuri, <strong>Ajith Suresh</strong></p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">4-party PPML protocol achieving fairness and robustness simultaneously — the first to handle a dishonest majority while guaranteeing all parties receive correct output.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2021/755" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/1744" target="_blank">Don't Eject the Impostor: Fast Three-Party Computation With a Known Cheater</a>
+            <p class="pf-pub-authors">Andreas Brüggemann, Oliver Schick, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/1744" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-ches">CHES'26</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-sp">IEEE S&amp;P'23</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>WW-FL: Secure and Private Large-Scale Federated Learning</h4>
-          <p class="pf-paper-authors">Felix Marx, Thomas Schneider, <strong>Ajith Suresh</strong>, Tobias Wehrle, Christian Weinert, Hossein Yalame</p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">Scales MPC-based secure aggregation to large federated learning deployments, addressing both privacy and Byzantine robustness at production scale.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2022/1611" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/499" target="_blank">FLUTE: Fast and Secure Lookup Table Evaluations</a>
+            <p class="pf-pub-authors">Andreas Brüggemann, Robin Hundt, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/499" target="_blank" class="pf-pub-link">PDF</a>
+            <a href="https://github.com/encryptogroup/FLUTE" target="_blank" class="pf-pub-link">Code</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-other">IEEE SaTML'24</span>
-            <span class="pf-paper-award">🏆 Runner-Up Best Paper</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ndss">NDSS'22</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>ScionFL: Efficient and Robust Secure Quantized Aggregation</h4>
-          <p class="pf-paper-authors">Yaniv Ben-Itzhak, Helen Möllering, Benny Pinkas, Thomas Schneider, <strong>Ajith Suresh</strong>, et al.</p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">Combines quantized aggregation with MPC to achieve communication-efficient and Byzantine-robust federated learning — awarded Runner-Up Distinguished Paper.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2023/545" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2021/755" target="_blank">Tetrad: Fair and Robust 4PC Framework for Privacy-Preserving Machine Learning</a>
+            <p class="pf-pub-authors">Nishat Koti, Arpita Patra, Rahul Rachuri, <strong>Ajith Suresh</strong></p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2021/755" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-journal">Journal of Cryptology'23</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-other">IEEE SaTML'24</span>
+            <span class="pf-pub-award">🏆 Runner-Up</span>
           </div>
-          <h4>MPClan: Protocol Suite for Privacy-Conscious Computations</h4>
-          <p class="pf-paper-authors">Nishat Koti, Shravani Patil, Arpita Patra, <strong>Ajith Suresh</strong></p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">Comprehensive protocol suite unifying multiple MPC settings (honest/dishonest majority, semi-honest/malicious) under a single framework optimised for practical use.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2022/475" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2023/545" target="_blank">ScionFL: Efficient and Robust Secure Quantized Aggregation</a>
+            <p class="pf-pub-authors">Yaniv Ben-Itzhak, Helen Möllering, Benny Pinkas, Thomas Schneider, <strong>Ajith Suresh</strong>, et al.</p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2023/545" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-        <div class="pf-paper">
-          <div class="pf-paper-header">
-            <span class="pf-paper-venue venue-sp">IEEE S&amp;P'24</span>
-            <span style="font-size:0.7rem;color:#94a3b8">CORE A*</span>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-journal">J. Cryptology'23</span>
+            <span class="pf-pub-rank">CORE A*</span>
           </div>
-          <h4>Don't Eject the Impostor: Fast Three-Party Computation With a Known Cheater</h4>
-          <p class="pf-paper-authors">Andreas Brüggemann, Oliver Schick, Thomas Schneider, <strong>Ajith Suresh</strong>, Hossein Yalame</p>
-          <p style="font-size:0.82rem;color:#475569;margin-bottom:0.8rem">Exploits the identity of a known malicious party to design asymmetric 3PC protocols that remain efficient even after cheating is detected.</p>
-          <div class="pf-paper-links">
-            <a href="https://eprint.iacr.org/2023/1744" target="_blank" class="pf-paper-link"><i class="fas fa-file-pdf"></i> Paper</a>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2022/475" target="_blank">MPClan: Protocol Suite for Privacy-Conscious Computations</a>
+            <p class="pf-pub-authors">Nishat Koti, Shravani Patil, Arpita Patra, <strong>Ajith Suresh</strong></p>
           </div>
-        </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2022/475" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-      </div>
+        <li class="pf-pub-item">
+          <div class="pf-pub-meta">
+            <span class="pf-pub-venue venue-ches">CHES'26</span>
+            <span class="pf-pub-rank">CORE A</span>
+          </div>
+          <div class="pf-pub-body">
+            <a class="pf-pub-title" href="https://eprint.iacr.org/2022/1611" target="_blank">WW-FL: Secure and Private Large-Scale Federated Learning</a>
+            <p class="pf-pub-authors">Felix Marx, Thomas Schneider, <strong>Ajith Suresh</strong>, Tobias Wehrle, Christian Weinert, Hossein Yalame</p>
+          </div>
+          <div class="pf-pub-links">
+            <a href="https://eprint.iacr.org/2022/1611" target="_blank" class="pf-pub-link">PDF</a>
+          </div>
+        </li>
 
-      <p style="margin-top:2rem;font-size:0.88rem;color:#64748b;text-align:center">
-        Full publication list with links →
-        <a href="files/cv_publications.pdf" target="_blank" style="font-weight:600">cv_publications.pdf</a>
-        &nbsp;·&nbsp; <a href="index.html#research" style="font-weight:600">Academic CV</a>
-      </p>
+      </ul>
     </div>
   </div>
 
@@ -277,17 +278,6 @@
             <li>Oblivious Transfer</li>
             <li>Homomorphic Encryption</li>
             <li>Zero-Knowledge Proofs</li>
-          </ul>
-        </div>
-
-        <div class="pf-skill-group">
-          <h4>MPC Frameworks</h4>
-          <ul>
-            <li>ABY / ABY2.0</li>
-            <li>SWIFT / BLAZE / FLASH</li>
-            <li>Tetrad / Trident / MPClan</li>
-            <li>FLUTE / SynCirc</li>
-            <li>FANNG-MPC</li>
           </ul>
         </div>
 
@@ -393,5 +383,34 @@
     <a href="index.html">Academic CV</a>
   </footer>
 
+<script>
+// Fetch citation count from Semantic Scholar (open API, CORS-friendly)
+// Finds Ajith Suresh via a known paper, then pulls total citations
+(async function () {
+  try {
+    var paperRes = await fetch(
+      'https://api.semanticscholar.org/graph/v1/paper/search' +
+      '?query=ABY2.0+Improved+Mixed-Protocol+Secure+Two-Party+Computation' +
+      '&fields=authors&limit=1'
+    );
+    var paperData = await paperRes.json();
+    var authors = (paperData.data && paperData.data[0] && paperData.data[0].authors) || [];
+    var ajith = authors.find(function (a) {
+      return a.name && a.name.toLowerCase().indexOf('ajith') !== -1;
+    });
+    if (!ajith) return;
+
+    var authRes = await fetch(
+      'https://api.semanticscholar.org/graph/v1/author/' +
+      ajith.authorId + '?fields=citationCount'
+    );
+    var authData = await authRes.json();
+    if (!authData.citationCount) return;
+
+    var el = document.getElementById('scholar-citations');
+    if (el) el.textContent = authData.citationCount.toLocaleString();
+  } catch (e) { /* keep — placeholder */ }
+})();
+</script>
 </body>
 </html>
