@@ -14,27 +14,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install scholarly
-        run: pip install scholarly
+      - name: Install dependencies
+        run: pip install scholarly requests
 
       - name: Fetch citation count from Google Scholar and patch portfolio.html
         run: |
           python3 << 'PYEOF'
-          import re, datetime, sys
+          import re, datetime, sys, time
+          from scholarly import scholarly, ProxyGenerator
 
+          AUTHOR_ID = 'uXP9hiMAAAAJ'
+          count = None
+
+          # ── Attempt 1: direct (no proxy) ──────────────────────────────────
+          print('Attempt 1: direct fetch...')
           try:
-              from scholarly import scholarly
-
-              # Fetch by Google Scholar author ID (from profile URL)
-              author = scholarly.search_author_id('uXP9hiMAAAAJ')
+              author = scholarly.search_author_id(AUTHOR_ID)
               count = author.get('citedby', None)
-              if count is None:
-                  print('citedby field missing — skipping update')
-                  sys.exit(0)
-
+              if count is not None:
+                  print(f'Direct fetch succeeded: {count:,}')
           except Exception as e:
-              print(f'scholarly fetch failed: {e} — skipping update')
-              sys.exit(0)
+              print(f'Direct fetch failed: {e}')
+
+          # ── Attempt 2: free proxies ────────────────────────────────────────
+          if count is None:
+              print('Attempt 2: retrying with free proxies...')
+              try:
+                  pg = ProxyGenerator()
+                  pg.FreeProxies()
+                  scholarly.use_proxy(pg)
+                  time.sleep(3)
+                  author = scholarly.search_author_id(AUTHOR_ID)
+                  count = author.get('citedby', None)
+                  if count is not None:
+                      print(f'Proxy fetch succeeded: {count:,}')
+              except Exception as e:
+                  print(f'Proxy fetch failed: {e}')
+
+          # ── All attempts exhausted ─────────────────────────────────────────
+          if count is None:
+              print('All fetch attempts failed — Google is likely blocking the request.')
+              print('Re-trigger manually from the Actions tab, or update the count by hand.')
+              sys.exit(1)   # fail visibly so the Actions tab shows a red x
 
           month_year = datetime.datetime.utcnow().strftime('%b %Y')
           print(f'Google Scholar citations: {count:,}  ({month_year})')
