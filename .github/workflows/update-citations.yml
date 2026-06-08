@@ -8,7 +8,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 5      # kill the whole job if it takes more than 5 minutes
+    timeout-minutes: 5
     permissions:
       contents: write
 
@@ -16,54 +16,37 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install dependencies
-        run: pip install scholarly requests
+        run: pip install scholarly
 
-      - name: Fetch citation count from Google Scholar and patch portfolio.html
-        timeout-minutes: 3  # kill this step after 3 minutes
+      - name: Fetch citation count via SerpAPI and patch portfolio.html
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           python3 << 'PYEOF'
-          import re, datetime, sys, signal, threading
-          from scholarly import scholarly
+          import re, datetime, sys, os
+          from scholarly import scholarly, ProxyGenerator
 
           AUTHOR_ID = 'uXP9hiMAAAAJ'
-          TIMEOUT_SECS = 60   # give each attempt at most 60 seconds
+          serpapi_key = os.environ.get('SERPAPI_KEY', '')
 
-          def _fetch_with_timeout(fn, timeout=TIMEOUT_SECS):
-              """Run *fn* in a thread; return its result or None on timeout."""
-              result = [None]
-              exc    = [None]
-              def run():
-                  try:
-                      result[0] = fn()
-                  except Exception as e:
-                      exc[0] = e
-              t = threading.Thread(target=run, daemon=True)
-              t.start()
-              t.join(timeout)
-              if t.is_alive():
-                  raise TimeoutError(f'timed out after {timeout}s')
-              if exc[0]:
-                  raise exc[0]
-              return result[0]
+          if not serpapi_key:
+              print('SERPAPI_KEY secret not set — cannot fetch citations.')
+              sys.exit(1)
 
-          count = None
-
-          # ── Attempt 1: direct (no proxy) ─────────────────────────────────
-          print('Attempt 1: direct fetch (60 s timeout)...')
+          print('Fetching via SerpAPI...')
           try:
-              author = _fetch_with_timeout(
-                  lambda: scholarly.search_author_id(AUTHOR_ID)
-              )
-              count = author.get('citedby') if author else None
-              if count is not None:
-                  print(f'Direct fetch succeeded: {count:,}')
-          except Exception as e:
-              print(f'Direct fetch failed: {e}')
+              pg = ProxyGenerator()
+              pg.SerpAPI(serpapi_key)
+              scholarly.use_proxy(pg)
 
-          # ── All attempts exhausted ────────────────────────────────────────
+              author = scholarly.search_author_id(AUTHOR_ID)
+              count  = author.get('citedby', None)
+          except Exception as e:
+              print(f'SerpAPI fetch failed: {e}')
+              sys.exit(1)
+
           if count is None:
-              print('Fetch failed — Google is blocking the request from this IP.')
-              print('Re-trigger manually from the Actions tab, or update the count by hand.')
+              print('citedby field missing in response — skipping update')
               sys.exit(1)
 
           month_year = datetime.datetime.utcnow().strftime('%b %Y')
