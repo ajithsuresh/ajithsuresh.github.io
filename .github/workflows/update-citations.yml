@@ -8,6 +8,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5      # kill the whole job if it takes more than 5 minutes
     permissions:
       contents: write
 
@@ -18,44 +19,52 @@ jobs:
         run: pip install scholarly requests
 
       - name: Fetch citation count from Google Scholar and patch portfolio.html
+        timeout-minutes: 3  # kill this step after 3 minutes
         run: |
           python3 << 'PYEOF'
-          import re, datetime, sys, time
-          from scholarly import scholarly, ProxyGenerator
+          import re, datetime, sys, signal, threading
+          from scholarly import scholarly
 
           AUTHOR_ID = 'uXP9hiMAAAAJ'
+          TIMEOUT_SECS = 60   # give each attempt at most 60 seconds
+
+          def _fetch_with_timeout(fn, timeout=TIMEOUT_SECS):
+              """Run *fn* in a thread; return its result or None on timeout."""
+              result = [None]
+              exc    = [None]
+              def run():
+                  try:
+                      result[0] = fn()
+                  except Exception as e:
+                      exc[0] = e
+              t = threading.Thread(target=run, daemon=True)
+              t.start()
+              t.join(timeout)
+              if t.is_alive():
+                  raise TimeoutError(f'timed out after {timeout}s')
+              if exc[0]:
+                  raise exc[0]
+              return result[0]
+
           count = None
 
-          # ── Attempt 1: direct (no proxy) ──────────────────────────────────
-          print('Attempt 1: direct fetch...')
+          # ── Attempt 1: direct (no proxy) ─────────────────────────────────
+          print('Attempt 1: direct fetch (60 s timeout)...')
           try:
-              author = scholarly.search_author_id(AUTHOR_ID)
-              count = author.get('citedby', None)
+              author = _fetch_with_timeout(
+                  lambda: scholarly.search_author_id(AUTHOR_ID)
+              )
+              count = author.get('citedby') if author else None
               if count is not None:
                   print(f'Direct fetch succeeded: {count:,}')
           except Exception as e:
               print(f'Direct fetch failed: {e}')
 
-          # ── Attempt 2: free proxies ────────────────────────────────────────
+          # ── All attempts exhausted ────────────────────────────────────────
           if count is None:
-              print('Attempt 2: retrying with free proxies...')
-              try:
-                  pg = ProxyGenerator()
-                  pg.FreeProxies()
-                  scholarly.use_proxy(pg)
-                  time.sleep(3)
-                  author = scholarly.search_author_id(AUTHOR_ID)
-                  count = author.get('citedby', None)
-                  if count is not None:
-                      print(f'Proxy fetch succeeded: {count:,}')
-              except Exception as e:
-                  print(f'Proxy fetch failed: {e}')
-
-          # ── All attempts exhausted ─────────────────────────────────────────
-          if count is None:
-              print('All fetch attempts failed — Google is likely blocking the request.')
+              print('Fetch failed — Google is blocking the request from this IP.')
               print('Re-trigger manually from the Actions tab, or update the count by hand.')
-              sys.exit(1)   # fail visibly so the Actions tab shows a red x
+              sys.exit(1)
 
           month_year = datetime.datetime.utcnow().strftime('%b %Y')
           print(f'Google Scholar citations: {count:,}  ({month_year})')
@@ -63,7 +72,6 @@ jobs:
           with open('portfolio.html', 'r', encoding='utf-8') as f:
               html = f.read()
 
-          # Replace the number inside the Scholar anchor block
           html = re.sub(
               r'(href="https://scholar\.google\.com[^"]*"[^>]*>[\s\S]*?'
               r'<span class="pf-stat-num">)[\d,]+(</span>)',
@@ -71,8 +79,6 @@ jobs:
               html,
               flags=re.DOTALL
           )
-
-          # Replace the date stamp "(Scholar, Mon YYYY)"
           html = re.sub(
               r'(Scholar, )[A-Za-z]+ \d{4}',
               rf'\g<1>{month_year}',
