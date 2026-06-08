@@ -16,37 +16,44 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install dependencies
-        run: pip install scholarly
+        run: pip install requests
 
       - name: Fetch citation count via SerpAPI and patch portfolio.html
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           python3 << 'PYEOF'
-          import re, datetime, sys, os
-          from scholarly import scholarly, ProxyGenerator
+          import re, datetime, sys, os, requests
 
-          AUTHOR_ID = 'uXP9hiMAAAAJ'
+          AUTHOR_ID  = 'uXP9hiMAAAAJ'
           serpapi_key = os.environ.get('SERPAPI_KEY', '')
 
           if not serpapi_key:
-              print('SERPAPI_KEY secret not set — cannot fetch citations.')
+              print('SERPAPI_KEY secret not set.')
               sys.exit(1)
 
-          print('Fetching via SerpAPI...')
+          print('Fetching from SerpAPI Google Scholar Author endpoint...')
           try:
-              pg = ProxyGenerator()
-              pg.SerpAPI(serpapi_key)
-              scholarly.use_proxy(pg)
-
-              author = scholarly.search_author_id(AUTHOR_ID)
-              count  = author.get('citedby', None)
+              resp = requests.get(
+                  'https://serpapi.com/search',
+                  params={
+                      'engine':    'google_scholar_author',
+                      'author_id': AUTHOR_ID,
+                      'api_key':   serpapi_key,
+                  },
+                  timeout=30,
+              )
+              resp.raise_for_status()
+              data = resp.json()
           except Exception as e:
-              print(f'SerpAPI fetch failed: {e}')
+              print(f'SerpAPI request failed: {e}')
               sys.exit(1)
 
-          if count is None:
-              print('citedby field missing in response — skipping update')
+          # Citations all-time is at cited_by.table[0].citations.all
+          try:
+              count = data['cited_by']['table'][0]['citations']['all']
+          except (KeyError, IndexError, TypeError):
+              print(f'Unexpected response shape: {list(data.keys())}')
               sys.exit(1)
 
           month_year = datetime.datetime.utcnow().strftime('%b %Y')
