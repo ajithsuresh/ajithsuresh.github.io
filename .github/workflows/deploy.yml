@@ -1,0 +1,41 @@
+name: Deploy site
+
+# Publishes master to the root of the gh-pages branch. PR previews live under
+# pr-preview/ on the same branch and are preserved by clean-exclude.
+on:
+  push:
+    branches: [master]
+  # Pushes made with GITHUB_TOKEN (the weekly citation commit) do not trigger
+  # other workflows, so deploy again when that job finishes.
+  workflow_run:
+    workflows: ["Update citation count"]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: gh-pages-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: master
+
+      - name: Build the site directory
+        run: scripts/build_site.sh _site
+
+      - name: Publish to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site
+          clean: true
+          clean-exclude: pr-preview/

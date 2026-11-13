@@ -1,0 +1,33 @@
+name: PR preview
+
+# Deploys each pull request to https://<user>.github.io/pr-preview/pr-<number>/
+# and removes it when the PR closes. Needs Pages to be served from gh-pages.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+concurrency:
+  group: gh-pages-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  preview:
+    # Fork PRs get a read-only token, so only preview branches in this repo.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build the site directory
+        if: github.event.action != 'closed'
+        run: scripts/build_site.sh _site
+
+      - name: Deploy or remove the preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: _site
