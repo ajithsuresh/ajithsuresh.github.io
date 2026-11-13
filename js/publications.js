@@ -53,7 +53,7 @@
     var links = '';
     links += l.pdf ? linkHtml('PDF', l.pdf, p)
       : '<span class="pub-link pending" title="File not added yet">PDF<span class="sr"> not available yet</span></span>';
-    links += linkHtml('Code', l.code, p) + linkHtml('Slides', l.slides, p);
+    links += linkHtml('Code', l.code, p) + linkHtml('Slides', l.slides, p) + linkHtml('Talk', l.talk, p);
     links += '<button type="button" class="pub-link" data-bib="' + esc(p.id) + '" aria-label="Copy BibTeX: ' + esc(p.title) + '">BibTeX</button>';
     var venue = '<em>' + esc(p.venue) + (p.year ? ' ' + p.year : '') + '</em>';
     if (p.core) venue += '<span class="pub-tier">CORE ' + esc(p.core) + '</span>';
