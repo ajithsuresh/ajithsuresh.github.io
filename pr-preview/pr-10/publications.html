@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajith Suresh — Publications</title>
+  <meta name="description" content="Publications by Ajith Suresh on secure multiparty computation and privacy-preserving machine learning, with papers, code and slides." />
+  <link rel="icon" type="image/x-icon" href="assets/img/ajith.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <link href="css/portfolio.css" rel="stylesheet" />
+  <link href="css/publications.css" rel="stylesheet" />
+</head>
+<body>
+
+  <a class="pub-skip" href="#pub-list">Skip to publications</a>
+  <nav class="pf-nav">
+    <a class="pf-nav-brand" href="portfolio.html" style="text-decoration:none">Ajith <span>Suresh</span></a>
+    <ul class="pf-nav-links">
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="publications.html" aria-current="page" class="pub-nav-active">Publications</a></li>
+      <li><a href="index.html" class="btn-switch">← Academic CV</a></li>
+    </ul>
+  </nav>
+
+  <main class="pub-page">
+    <header class="pub-head">
+      <h1>Publications</h1>
+      <p class="pub-sub" id="pub-summary" role="status">Loading…</p>
+      <div class="pub-tools">
+        <input id="pub-search" type="search" placeholder="Search title, author, venue" aria-label="Search publications" />
+        <div class="pub-seg" role="group" aria-label="Filter by type">
+          <button type="button" data-f="all" class="on" aria-pressed="true">All</button>
+          <button type="button" data-f="peer" aria-pressed="false">Peer-reviewed</button>
+          <button type="button" data-f="award" aria-pressed="false">Awards</button>
+          <button type="button" data-f="code" aria-pressed="false">With code</button>
+        </div>
+        <button type="button" id="pub-bib-all" class="pub-all-bib">Download all (.bib)</button>
+      </div>
+    </header>
+
+    <div id="pub-list"></div>
+    <noscript><p>This page needs JavaScript to list publications. The full list is in the <a href="files/cv_publications.pdf">publications PDF</a>.</p></noscript>
+  </main>
+
+  <footer class="pf-footer">
+    Ajith Suresh · Lead MPC Researcher · TII Abu Dhabi &nbsp;·&nbsp;
+    <a href="index.html">Academic CV</a>
+  </footer>
+
+  <script src="js/publications.js"></script>
+</body>
+</html>
