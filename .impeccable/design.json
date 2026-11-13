@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T00:00:00Z",
+  "title": "Design System: Ajith Suresh — Academic Site",
+  "extensions": {
+    "colorMeta": {
+      "indigo": { "role": "primary", "displayName": "Signal Indigo", "canonical": "#6366f1", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#e0e7ff"] },
+      "indigo-dark": { "role": "primary", "displayName": "Pressed Indigo", "canonical": "#4f46e5", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#e0e7ff"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0f172a", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#f1f5f9", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "night": { "role": "neutral", "displayName": "Night", "canonical": "#0a0e1a", "tonalRamp": ["#000000", "#05070d", "#0a0e1a", "#111827", "#1f2937", "#374151", "#4b5563", "#6b7280"] },
+      "award-bg": { "role": "tertiary", "displayName": "Award Amber", "canonical": "#fef3c7", "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#fbbf24", "#fde68a", "#fef3c7"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Page title", "purpose": "The single page title." },
+      "headline": { "displayName": "Year heading", "purpose": "Groups entries by year over a 1px rule." },
+      "title": { "displayName": "Paper title", "purpose": "Serif 600 paper titles." },
+      "body": { "displayName": "Entry text", "purpose": "Authors, venue and notes, capped at 74ch." },
+      "label": { "displayName": "Badge label", "purpose": "Rank, award and type badges. Never below 11px." },
+      "ui": { "displayName": "Interface", "purpose": "Filters, file chips and buttons." }
+    },
+    "shadows": [
+      { "name": "hover-lift", "value": "0 6px 24px rgba(0,0,0,0.08)", "purpose": "Portfolio cards on hover only." }
+    ],
+    "motion": [
+      { "name": "ease-out-fast", "value": "0.15s ease-out", "purpose": "Link and button colour changes, skip-link reveal." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" },
+      { "name": "portfolio-mobile", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Filter segment",
+      "kind": "chip",
+      "refersTo": "segment-active",
+      "description": "Segmented filter group; the active option is filled Pressed Indigo.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-on\">All</button><button>Awards</button><button>With code</button></div>",
+      "css": ".ds-seg{display:inline-flex;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}.ds-seg button{font:500 .8rem Inter,sans-serif;padding:8px 12px;border:0;border-right:1px solid #e2e8f0;background:transparent;color:#64748b;cursor:pointer}.ds-seg button:last-child{border-right:0}.ds-seg button.ds-on{background:#4f46e5;color:#fff}.ds-seg button:not(.ds-on):hover{background:#eef2ff;color:#3730a3}.ds-seg button:focus-visible{outline:2px solid #4f46e5;outline-offset:2px}"
+    },
+    {
+      "name": "File chip",
+      "kind": "chip",
+      "refersTo": "file-chip",
+      "description": "A link to a PDF, code or slides; the dashed variant marks a file not yet added.",
+      "html": "<a class=\"ds-chip\" href=\"#\">PDF</a> <span class=\"ds-chip ds-pending\">PDF</span>",
+      "css": ".ds-chip{font:500 .72rem Inter,sans-serif;text-decoration:none;padding:2px 9px;border-radius:6px;border:1px solid #c7d2fe;color:#3730a3;background:#fff;cursor:pointer}.ds-chip:hover{background:#eef2ff;border-color:#6366f1}.ds-chip:focus-visible{outline:2px solid #4f46e5;outline-offset:2px}.ds-chip.ds-pending{border-style:dashed;border-color:#cbd5e1;color:#64748b;background:transparent;cursor:default}"
+    },
+    {
+      "name": "Rank badge",
+      "kind": "chip",
+      "refersTo": "rank-badge",
+      "description": "CORE rank beside a venue; the amber variant marks an award.",
+      "html": "<span class=\"ds-badge\">CORE A*</span> <span class=\"ds-badge ds-award\">Runner-Up Award</span>",
+      "css": ".ds-badge{font:600 .72rem Inter,sans-serif;padding:1px 7px;border-radius:5px;background:#eef2ff;color:#3730a3;white-space:nowrap}.ds-badge.ds-award{background:#fef3c7;color:#92400e}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Single-line search with an indigo focus outline.",
+      "html": "<input class=\"ds-input\" type=\"search\" placeholder=\"Search title, author, venue\" />",
+      "css": ".ds-input{font:400 .88rem Inter,sans-serif;padding:8px 12px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#0f172a;width:260px}.ds-input:focus-visible{outline:2px solid #4f46e5;outline-offset:1px}"
+    },
+    {
+      "name": "Publication entry",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Numbered row: serif title, authors, italic venue and file chips.",
+      "html": "<article class=\"ds-pub\"><span class=\"ds-n\">[12]</span><div><p class=\"ds-t\">FLUTE: Fast and Secure Lookup Table Evaluations.</p><p class=\"ds-a\">Brüggemann, Hundt, Schneider, <b>Ajith Suresh</b>, Yalame</p><p class=\"ds-v\"><em>IEEE Symposium on Security and Privacy 2023</em></p></div></article>",
+      "css": ".ds-pub{display:grid;grid-template-columns:40px 1fr;gap:4px 8px;font:1rem/1.5 'Source Serif 4',Georgia,serif;color:#0f172a}.ds-n{font:.75rem Inter,sans-serif;color:#64748b;padding-top:4px}.ds-t{font-weight:600;margin:0}.ds-a{margin:1px 0 0;color:#334155;font-size:.95rem}.ds-a b{font-weight:600;color:#0f172a}.ds-v{margin:1px 0 0;color:#475569;font-size:.95rem}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Reading Room",
+    "overview": "The site is a quiet place to read about one researcher's work. The papers carry the page. Entries are set in a book serif on a pale cool ground, the interface is set in Inter and kept small, and a single indigo accent marks what you can act on.",
+    "keyCharacteristics": [
+      "Serif for reading (titles, authors, venues). Sans for tools (nav, filters, chips, badges).",
+      "One accent, indigo, on actions and the active state.",
+      "Flat surfaces separated by hairlines and rules.",
+      "Dense but breathable: tight within an entry, generous between years.",
+      "Dark site bar on every standalone page as the constant frame."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Indigo marks actions and the active state only. It is never decoration, and it does not fill large areas on reading pages.", "section": "colors" },
+      { "name": "The Quiet Ink Floor Rule", "body": "Body-size text on Paper is #475569 or darker. #64748b is for small, non-essential numerals only.", "section": "colors" },
+      { "name": "The Serif-Reads, Sans-Acts Rule", "body": "If it is something the visitor reads as content, it is serif. If it is something they operate or scan as metadata, it is Inter.", "section": "typography" },
+      { "name": "The 11px Floor Rule", "body": "No functional or content text is smaller than 11px.", "section": "typography" },
+      { "name": "The Flat-At-Rest Rule", "body": "No surface casts a shadow at rest. Shadows are a response to hover, never decoration, and never coloured.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set content in Source Serif 4 and controls in Inter.",
+      "Do keep indigo for actions and the active state.",
+      "Do use #4f46e5, not #6366f1, behind white text.",
+      "Do keep text on Paper at #475569 or darker for body size.",
+      "Do give every link its paper's title as its accessible name.",
+      "Do offset anchor targets by 88px for the sticky bar."
+    ],
+    "donts": [
+      "Don't use shadows at rest, coloured glows, or gradient text on reading pages.",
+      "Don't put a coloured border on one side of a rounded card.",
+      "Don't set functional text below 11px.",
+      "Don't type publication counts or years into the HTML. They come from data/publications.json.",
+      "Don't touch the Scholar anchor and pf-stat-num span in portfolio.html. The weekly citation job rewrites them by regex."
+    ]
+  }
+}
