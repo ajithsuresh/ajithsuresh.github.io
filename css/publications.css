@@ -33,10 +33,6 @@
 }
 .pub-skip:focus { top: 8px; }
 
-/* Footer: readable on the dark bar (portfolio.css uses #475569, 2.5:1) */
-.pf-footer { color: #94a3b8; }
-.pf-footer a { color: #a5b4fc; }
-
 .pub-page {
   max-width: 860px;
   margin: 0 auto;
@@ -109,7 +105,7 @@
   font-size: 1.0rem;
   line-height: 1.5;
 }
-.pub-n { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #64748b; padding-top: 4px; }
+.pub-n { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); padding-top: 4px; }
 .pub { scroll-margin-top: 88px; }
 .pub > div { max-width: 74ch; min-width: 0; }
 .pub-target { background: #e0e7ff; border-radius: 8px; outline: 8px solid #e0e7ff; }
@@ -119,7 +115,7 @@
 .pub-venue { margin: 1px 0 0; color: #475569; font-size: 0.95rem; }
 .pub-note { margin: 1px 0 0; color: #475569; font-size: 0.88rem; font-style: italic; }
 .pub-tier, .pub-type, .pub-award {
-  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+  font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600;
   padding: 1px 7px; border-radius: 5px; margin-left: 6px; vertical-align: 1px; white-space: nowrap;
 }
 .pub-tier { background: #eef2ff; color: var(--p-deep); }
@@ -128,16 +124,16 @@
 
 .pub-links { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 6px; font-family: 'Inter', sans-serif; }
 .pub-link {
-  font-size: 0.72rem; font-weight: 500; text-decoration: none;
+  font-size: 0.75rem; font-weight: 500; text-decoration: none;
   padding: 2px 9px; border-radius: 6px; border: 1px solid #c7d2fe; color: var(--p-deep); background: #fff;
   cursor: pointer; font-family: 'Inter', sans-serif;
 }
 .pub-link:hover { background: #eef2ff; border-color: var(--p); }
-.pub-link.pending { border-style: dashed; border-color: #cbd5e1; color: #94a3b8; cursor: default; background: transparent; }
+.pub-link.pending { border-style: dashed; border-color: #cbd5e1; color: var(--muted); cursor: default; background: transparent; }
 .pub-link.pending:hover { background: transparent; border-color: #cbd5e1; }
 
 .pub-check {
-  margin: 6px 0 0; font-family: 'Inter', sans-serif; font-size: 0.74rem; color: #92400e;
+  margin: 6px 0 0; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #92400e;
   background: #fffbeb; border: 1px dashed #f59e0b; border-radius: 6px; padding: 4px 9px;
 }
 
