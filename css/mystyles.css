@@ -267,49 +267,6 @@ h3.mb-0 a:hover { color: var(--primary) !important; }
   border-bottom: 1px solid var(--primary-glow);
 }
 
-#mylist-a,
-#mylist-b {
-  list-style: decimal !important;
-  padding-left: 1.2rem;
-}
-
-#mylist-a li,
-#mylist-b li {
-  padding: 0.7rem 0;
-  margin: 0 !important;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: #334155;
-}
-
-#mylist-b li:last-child { border-bottom: none; }
-
-.mytitle-a {
-  color: var(--text);
-  font-weight: 600;
-  font-style: normal !important;
-}
-
-/* Publication badges */
-.accepted, .award, .core, .book, .bc {
-  display: inline-block;
-  border-radius: 5px;
-  padding: 2px 9px;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-style: normal;
-  vertical-align: middle;
-}
-
-.accepted { background: #dbeafe; color: #1d4ed8; }
-.award    { background: #fee2e2; color: #991b1b; }
-.core     { background: #dcfce7; color: #166534; }
-.book     { background: #fce7f3; color: #9d174d; }
-.bc       { background: #f5f3ff; color: #5b21b6; }
-
 #align-par { text-align: left !important; }
 
 /* ── Awards ───────────────────────────────────────────────── */
