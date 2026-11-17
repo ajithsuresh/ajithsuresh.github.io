@@ -130,7 +130,7 @@ Depth is flat. Rules, tonal fills and hairlines separate things, and shadows app
 A cool slate-and-paper neutral set with one indigo accent and a single warm note reserved for awards.
 
 ### Primary
-- **Signal Indigo** (#6366f1): the brand accent on the CV and portfolio pages. Filled buttons on the dark bar and hover rings.
+- **Signal Indigo** (#6366f1): the brand accent on the CV and portfolio pages. Borders, hover rings and decorative fills only. Never text on Paper, and never behind white text (4.47:1).
 - **Pressed Indigo** (#4f46e5): the active filter fill and hover state. Passes AA with white text where Signal Indigo does not (white on #6366f1 is 4.47:1).
 - **Deep Indigo** (#3730a3): link and chip text on light grounds. The accent as readable ink.
 - **Indigo Tint** (#eef2ff) and **Indigo Wash** (#e0e7ff): hover and rank-badge fills, and the highlight on a deep-linked entry.
@@ -222,7 +222,7 @@ Softly rounded and consistent: 5px for badges, 6px for file chips and the top-ba
 - **Focus:** 2px indigo outline with 1px offset.
 
 ### Navigation
-- **Style:** dark Night bar, 56px, Inter 0.82rem 600 uppercase with 0.07em tracking. Links in Quiet Slate (#94a3b8), the current page in Indigo on Night. One filled indigo button ("← Academic CV").
+- **Style:** dark Night bar, 56px, Inter 0.82rem 600 uppercase with 0.07em tracking. Links in Quiet Slate (#94a3b8), the current page in Indigo on Night. One filled indigo button ("Academic CV").
 - **Mobile:** text links hide below 640px.
 
 ### Publication entry (signature)

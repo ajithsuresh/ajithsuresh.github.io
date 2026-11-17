@@ -8,7 +8,7 @@
   --p-deep:  #3730a3;
   --p-glow:  rgba(99,102,241,0.18);
   --text:    #0f172a;
-  --muted:   #64748b;
+  --muted:   #586579;
   --border:  #e2e8f0;
   --surface: #ffffff;
   --bg:      #f1f5f9;
@@ -28,7 +28,7 @@ body {
   line-height: 1.6;
 }
 
-a { text-decoration: none; color: var(--p); }
+a { text-decoration: none; color: var(--p-dark); }
 a:hover { color: var(--p-dark); }
 
 /* ── Top nav ──────────────────────────────────────────────── */
@@ -74,7 +74,7 @@ a:hover { color: var(--p-dark); }
 .pf-nav-links a:hover { color: #a5b4fc; }
 
 .btn-switch {
-  background: var(--p);
+  background: var(--p-dark);
   color: #fff !important;
   border-radius: 6px;
   padding: 6px 14px !important;
@@ -82,8 +82,9 @@ a:hover { color: var(--p-dark); }
   transition: background 0.15s !important;
   text-transform: none !important;
   letter-spacing: 0 !important;
+  white-space: nowrap;
 }
-.btn-switch:hover { background: var(--p-dark) !important; }
+.btn-switch:hover { background: var(--p-deep) !important; }
 
 /* ── Hero ─────────────────────────────────────────────────── */
 .pf-hero {
@@ -163,7 +164,7 @@ a:hover { color: var(--p-dark); }
 }
 
 .btn-primary-pf {
-  background: #6366f1;
+  background: #4f46e5;
   color: #fff;
   border-radius: 8px;
   padding: 10px 22px;
@@ -174,7 +175,7 @@ a:hover { color: var(--p-dark); }
   align-items: center;
   gap: 6px;
 }
-.btn-primary-pf:hover { background: #4f46e5; color: #fff; transform: translateY(-1px); }
+.btn-primary-pf:hover { background: #4338ca; color: #fff; transform: translateY(-1px); }
 
 .btn-outline-pf {
   background: transparent;
@@ -267,11 +268,7 @@ a:hover { color: var(--p-dark); }
   border-radius: 14px;
   padding: 28px 24px;
   transition: box-shadow 0.18s, transform 0.18s;
-  border-top: 3px solid var(--p);
 }
-
-.pf-pillar:nth-child(2) { border-top-color: #8b5cf6; }
-.pf-pillar:nth-child(3) { border-top-color: #06b6d4; }
 
 .pf-pillar:hover {
   box-shadow: 0 8px 32px rgba(0,0,0,0.09);
@@ -371,7 +368,7 @@ a:hover { color: var(--p-dark); }
   white-space: nowrap;
 }
 
-.pf-paper h4 {
+.pf-paper h3 {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
@@ -397,7 +394,7 @@ a:hover { color: var(--p-dark); }
 .pf-paper-link {
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--p);
+  color: var(--p-dark);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -454,7 +451,7 @@ a:hover { color: var(--p-dark); }
 .pf-pub-rank {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--muted);
   padding-left: 2px;
 }
 
@@ -498,7 +495,7 @@ a.pf-pub-title:hover { color: var(--p); }
 .pf-pub-link {
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--p);
+  color: var(--p-dark);
   border: 1px solid #ddd6fe;
   border-radius: 4px;
   padding: 3px 9px;
@@ -541,7 +538,7 @@ a.pf-pub-title:hover { color: var(--p); }
   gap: 1rem;
 }
 
-.pf-skill-group h4 {
+.pf-skill-group h3 {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -616,13 +613,13 @@ a.pf-pub-title:hover { color: var(--p); }
 .pf-tl-date {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--p);
+  color: var(--p-dark);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 0.2rem;
 }
 
-.pf-tl-item h4 {
+.pf-tl-item h3 {
   font-size: 0.97rem;
   font-weight: 700;
   margin: 0 0 0.15rem;
@@ -689,9 +686,9 @@ a.pf-pub-title:hover { color: var(--p); }
   text-align: center;
   padding: 20px;
   font-size: 0.8rem;
-  color: #475569;
+  color: #94a3b8;
 }
-.pf-footer a { color: #6366f1; }
+.pf-footer a { color: #a5b4fc; }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 640px) {
