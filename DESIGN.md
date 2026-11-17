@@ -243,4 +243,4 @@ A numbered row: number gutter, serif title, author line with the owner's name in
 - **Don't** put a coloured border on one side of a rounded card.
 - **Don't** set functional text below 11px.
 - **Don't** type publication counts or years into the HTML. They come from `data/publications.json`.
-- **Don't** touch the Scholar anchor and `pf-stat-num` span in `portfolio.html`. The weekly citation job rewrites them by regex.
+- **Don't** touch the Scholar anchor and `pf-stat-num` span in `index.html`. The weekly citation job rewrites them by regex.
