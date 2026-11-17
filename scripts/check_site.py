@@ -4,7 +4,7 @@
 1. Every relative href/src in every .html file points at a file that exists.
 2. data/publications.json (when present) is valid, has unique URL-safe ids,
    and every local file it links to exists.
-3. portfolio.html still matches the regexes that
+3. index.html still matches the regexes that
    .github/workflows/update-citations.yml uses to patch it. If this fails,
    the weekly citation update would silently stop working.
 
@@ -116,9 +116,9 @@ def check_publications():
 
 
 def check_citation_markup():
-    page = ROOT / "portfolio.html"
+    page = ROOT / "index.html"
     if not page.exists():
-        print("skip  portfolio.html not present")
+        print("skip  index.html not present")
         return
     html = page.read_text(encoding="utf-8")
     # Keep these two patterns identical to update-citations.yml.
@@ -127,11 +127,11 @@ def check_citation_markup():
     )
     date = re.compile(r"(Scholar, )[A-Za-z]+ \d{4}")
     if not stat.search(html):
-        fail("portfolio.html: Scholar anchor + pf-stat-num span no longer match the citation workflow regex")
+        fail("index.html: Scholar anchor + pf-stat-num span no longer match the citation workflow regex")
     if not date.search(html):
-        fail("portfolio.html: 'Scholar, Mon YYYY' text no longer matches the citation workflow regex")
+        fail("index.html: 'Scholar, Mon YYYY' text no longer matches the citation workflow regex")
     if stat.search(html) and date.search(html):
-        print("ok    portfolio.html still matches the citation update patterns")
+        print("ok    index.html still matches the citation update patterns")
 
 
 check_links()

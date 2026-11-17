@@ -21,8 +21,8 @@ A single, accurate, first-party record of one researcher's work, with the real f
 ## Operating Context
 
 - Static site on GitHub Pages. No build step, no server, no framework.
-- `portfolio.html` carries a weekly GitHub Actions job (`.github/workflows/update-citations.yml`) that rewrites the Google Scholar citation count and "Scholar, Mon YYYY" date by regex. The Scholar anchor and the `pf-stat-num` span must stay intact.
-- The CV page (`index.html`) is a Bootstrap 4 sidebar layout with a hand-written publication list. The portfolio and publications pages are standalone pages.
+- `index.html` (the home page, formerly `portfolio.html`) carries a weekly GitHub Actions job (`.github/workflows/update-citations.yml`) that rewrites the Google Scholar citation count and "Scholar, Mon YYYY" date by regex. The Scholar anchor and the `pf-stat-num` span must stay intact.
+- The CV page (`cv.html`) is a Bootstrap 4 sidebar layout. Its Research section points to the publications page instead of listing papers. The home page (`index.html`) and the publications page are standalone pages. `portfolio.html` is only a redirect stub to `index.html`.
 - Publication data lives in `data/publications.json` and is rendered in the browser by `js/publications.js`.
 - Existing downloads: `files/cv.pdf`, `files/cv_publications.pdf`, `files/cv_short.pdf`, and one presentation under `files/presentations/`.
 
@@ -33,7 +33,7 @@ A single, accurate, first-party record of one researcher's work, with the real f
 - Files are hosted in this repository under `files/`, not only linked externally. Rights are mixed and handled case by case: the owner marks which papers may be hosted as published, and everything else uses author-accepted or preprint versions.
 - Entries that exist as both a conference or workshop version and a later journal version are listed separately and cross-referenced. Doubtful entries are confirmed with the owner before they ship.
 - Confirmed facts: SynCirc (IEEE TC 2026) is the journal version of the IEEE HOST 2021 paper. WW-FL is IACR CHES 2026. Fast Actively Secure OT Extension for Short Secrets is NDSS 2017. The 6G Massive IoT book chapter is 2025.
-- Open: `index.html` and `files/cv_publications.pdf` may still show NDSS 2020 for the OT-extension paper. Needs the owner's go-ahead to correct.
+- Open: `files/cv_publications.pdf` may still show NDSS 2020 for the OT-extension paper. It needs correcting in the PDF's source, which is not in this repo.
 - Open: the exact PDFs, slides and code archives to host have not been provided yet.
 
 ## Brand Commitments
@@ -43,7 +43,7 @@ The name is "Ajith Suresh". The site carries the owner's existing look: Inter ty
 ## Evidence on Hand
 
 - `files/cv_publications.pdf`: the only source of full per-paper links.
-- Eprint links and two code repositories (ABY2.0, FLUTE) for several papers, in `portfolio.html`.
+- Eprint links and two code repositories (ABY2.0, FLUTE) for several papers, in `index.html`.
 - Google Scholar profile (author id `uXP9hiMAAAAJ`) used for the citation count.
 - No testimonials, awards beyond those in the CV, or metrics beyond the Scholar count are on hand. Do not invent any.
 

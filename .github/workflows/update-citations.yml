@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Fetch citation count via SerpAPI and patch portfolio.html
+      - name: Fetch citation count via SerpAPI and patch index.html
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
@@ -59,7 +59,7 @@ jobs:
           month_year = datetime.datetime.utcnow().strftime('%b %Y')
           print(f'Google Scholar citations: {count:,}  ({month_year})')
 
-          with open('portfolio.html', 'r', encoding='utf-8') as f:
+          with open('index.html', 'r', encoding='utf-8') as f:
               html = f.read()
 
           html = re.sub(
@@ -75,20 +75,20 @@ jobs:
               html
           )
 
-          with open('portfolio.html', 'w', encoding='utf-8') as f:
+          with open('index.html', 'w', encoding='utf-8') as f:
               f.write(html)
 
-          print('portfolio.html patched')
+          print('index.html patched')
           PYEOF
 
       - name: Commit if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet portfolio.html; then
+          if git diff --quiet index.html; then
             echo "Citation count unchanged — nothing to commit"
           else
-            git add portfolio.html
+            git add index.html
             git commit -m "Update citation count [skip ci]"
             git push
           fi
