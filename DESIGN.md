@@ -45,6 +45,7 @@ rounded:
   control: "10px"
   callout: "14px"
   sheet: "2.25rem"
+  sheet-phone: "1.5rem"
 spacing:
   label-column: "11rem"
   gutter: "3rem"
