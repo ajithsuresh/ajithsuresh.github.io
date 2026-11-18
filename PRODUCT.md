@@ -22,12 +22,13 @@ A single, accurate, first-party record of one researcher's work, with the real f
 
 - Static site on GitHub Pages. No build step, no server, no framework.
 - `index.html` (the home page, formerly `portfolio.html`) carries a weekly GitHub Actions job (`.github/workflows/update-citations.yml`) that rewrites the Google Scholar citation count and "Scholar, Mon YYYY" date by regex. The Scholar anchor and the `pf-stat-num` span must stay intact.
-- The CV page (`cv.html`) is a Bootstrap 4 sidebar layout. Its Research section points to the publications page instead of listing papers. The home page (`index.html`) and the publications page are standalone pages. `portfolio.html` is only a redirect stub to `index.html`.
+- All three pages (`index.html`, `publications.html`, `cv.html`) share one stylesheet, `css/site.css`, and the nav script `js/nav.js`. The home and publications pages render papers from the JSON through `js/pubs.js`. The CV's Publications section points to the publications page instead of listing papers. `portfolio.html` is only a redirect stub to `index.html`.
 - Publication data lives in `data/publications.json` and is rendered in the browser by `js/publications.js`.
 - Existing downloads: `files/cv.pdf`, `files/cv_publications.pdf`, `files/cv_short.pdf`, and one presentation under `files/presentations/`.
 
 ## Capabilities and Constraints
 
+- Entries can be marked `"selected": true` (shown on the home page) and given a `"track"` (`mpc`, `ppml` or `fl`, listed under that research theme).
 - Publications page lists 26 entries: 24 papers, 1 book chapter and 1 preprint. Count is computed from the data, never typed by hand.
 - Each entry can carry: PDF, code, slides, BibTeX, CORE rank, award, and a note linking journal and conference versions of one work.
 - Files are hosted in this repository under `files/`, not only linked externally. Rights are mixed and handled case by case: the owner marks which papers may be hosted as published, and everything else uses author-accepted or preprint versions.
@@ -38,7 +39,7 @@ A single, accurate, first-party record of one researcher's work, with the real f
 
 ## Brand Commitments
 
-The name is "Ajith Suresh". The site carries the owner's existing look: Inter type and an indigo accent (`#6366f1`) on the CV and portfolio pages. The owner has not yet approved extending it as the site's identity.
+The name is "Ajith Suresh". The owner asked for a theme in the spirit of christian.weinert.net, redesigned for this site (November 2026): Figtree type, a deep sea-blue banner and a sand accent. The previous Inter and indigo look is retired.
 
 ## Evidence on Hand
 
