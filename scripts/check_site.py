@@ -178,8 +178,11 @@ class Head(HTMLParser):
 def check_seo():
     before, pages = len(errors), []
     for page in html_files():
+        text = page.read_text(encoding="utf-8", errors="replace")
+        if text.lstrip().startswith("google-site-verification:"):
+            continue  # Search Console ownership file, not a page
         head = Head()
-        head.feed(page.read_text(encoding="utf-8", errors="replace"))
+        head.feed(text)
         name = page.relative_to(ROOT).as_posix()
         if "noindex" in head.meta.get("robots", ""):
             continue  # redirect stubs stay out of search results
