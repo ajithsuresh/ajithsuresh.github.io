@@ -23,6 +23,7 @@ A single, accurate, first-party record of one researcher's work, with the real f
 - Static site on GitHub Pages. No build step, no server, no framework.
 - `index.html` (the home page, formerly `portfolio.html`) carries a weekly GitHub Actions job (`.github/workflows/update-citations.yml`) that rewrites the Google Scholar citation count and "Scholar, Mon YYYY" date by regex. The Scholar anchor and the `pf-stat-num` span must stay intact.
 - The CV page (`cv.html`) is a Bootstrap 4 sidebar layout. Its Research section points to the publications page instead of listing papers. The home page (`index.html`) and the publications page are standalone pages. `portfolio.html` is only a redirect stub to `index.html`.
+- Every indexable page needs a title, a meta description, a canonical URL on `https://ajithsuresh.github.io/` and Open Graph tags. A new page must also be added to `sitemap.xml`. `scripts/check_site.py` fails CI if any of these drift. `robots.txt` blocks `/pr-preview/` so preview builds stay out of search.
 - Publication data lives in `data/publications.json` and is rendered in the browser by `js/publications.js`.
 - Existing downloads: `files/cv.pdf`, `files/cv_publications.pdf`, `files/cv_short.pdf`, and one presentation under `files/presentations/`.
 
