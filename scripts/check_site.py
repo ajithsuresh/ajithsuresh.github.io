@@ -8,17 +8,23 @@
    .github/workflows/update-citations.yml uses to patch it. If this fails,
    the weekly citation update would silently stop working.
 
+4. Every indexable page has a title, description, canonical URL and Open Graph
+   tags; JSON-LD parses; robots.txt names the sitemap; sitemap.xml lists
+   exactly the indexable pages.
+
 Exit code 1 if any check fails. Standard library only.
 """
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent)
 SKIP_DIRS = {".git", ".github", ".impeccable", ".claude", "_site", "node_modules"}
+SITE = "https://ajithsuresh.github.io/"
 errors = []
 
 
@@ -134,7 +140,91 @@ def check_citation_markup():
         print("ok    index.html still matches the citation update patterns")
 
 
+class Head(HTMLParser):
+    """Collects the head tags the SEO check needs."""
+
+    def __init__(self):
+        super().__init__()
+        self.title, self.meta, self.canonical, self.ld = "", {}, None, []
+        self._in_title = self._in_ld = False
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "title":
+            self._in_title = True
+        elif tag == "meta":
+            key = a.get("name") or a.get("property")
+            if key:
+                self.meta[key] = a.get("content", "")
+        elif tag == "link" and a.get("rel") == "canonical":
+            self.canonical = a.get("href")
+        elif tag == "script" and a.get("type") == "application/ld+json":
+            self._in_ld = True
+            self.ld.append("")
+
+    def handle_endtag(self, tag):
+        if tag == "title":
+            self._in_title = False
+        elif tag == "script":
+            self._in_ld = False
+
+    def handle_data(self, data):
+        if self._in_title:
+            self.title += data
+        elif self._in_ld:
+            self.ld[-1] += data
+
+
+def check_seo():
+    before, pages = len(errors), []
+    for page in html_files():
+        head = Head()
+        head.feed(page.read_text(encoding="utf-8", errors="replace"))
+        name = page.relative_to(ROOT).as_posix()
+        if "noindex" in head.meta.get("robots", ""):
+            continue  # redirect stubs stay out of search results
+        pages.append(name)
+        want = SITE + ("" if name == "index.html" else name)
+        if not head.title.strip():
+            fail(f"{name}: missing <title>")
+        desc = head.meta.get("description", "").strip()
+        if not 50 <= len(desc) <= 175:
+            fail(f"{name}: meta description must be 50-175 characters (is {len(desc)})")
+        if head.canonical != want:
+            fail(f"{name}: canonical is '{head.canonical}', expected '{want}'")
+        for key in ("og:title", "og:description", "og:url", "og:image", "twitter:card"):
+            if not head.meta.get(key, "").strip():
+                fail(f"{name}: missing <meta {key}>")
+        if head.meta.get("og:url") != want:
+            fail(f"{name}: og:url does not match the canonical URL")
+        for block in head.ld:
+            try:
+                json.loads(block)
+            except ValueError as e:
+                fail(f"{name}: JSON-LD is not valid JSON: {e}")
+    robots = ROOT / "robots.txt"
+    if not robots.exists() or f"Sitemap: {SITE}sitemap.xml" not in robots.read_text():
+        fail("robots.txt must exist and name the sitemap")
+    sitemap = ROOT / "sitemap.xml"
+    if not sitemap.exists():
+        fail("sitemap.xml is missing")
+    else:
+        try:
+            ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+            listed = {u.text for u in ET.parse(sitemap).getroot().findall("s:url/s:loc", ns)}
+            wanted = {SITE + ("" if n == "index.html" else n) for n in pages}
+            for extra in sorted(listed - wanted):
+                fail(f"sitemap.xml lists '{extra}', which is not an indexable page")
+            for missing in sorted(wanted - listed):
+                fail(f"sitemap.xml is missing '{missing}'")
+        except ET.ParseError as e:
+            fail(f"sitemap.xml is not valid XML: {e}")
+    if len(errors) == before:
+        print(f"ok    SEO tags, robots.txt and sitemap.xml for {len(pages)} pages")
+
+
 check_links()
 check_publications()
 check_citation_markup()
+check_seo()
 sys.exit(1 if errors else 0)
